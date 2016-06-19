@@ -22,7 +22,6 @@ printenv | grep -i android
 function build_all
 {
 	build.py --toolchain ${TOOLCHAIN} --verbose --fwd ANDROID=TRUE \
-			 ${GATHERER_BUILD_ARGS[*]} \
 			 --config Release \
 			 --strip \
 			 --jobs 8  \

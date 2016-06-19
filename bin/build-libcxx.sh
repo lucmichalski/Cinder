@@ -21,7 +21,6 @@ function build_all
     COMMAND=(
         "--toolchain ${TOOLCHAIN} "
         "--verbose --fwd HUNTER_CONFIGURATION_TYPES=Release "
-        "${GATHERER_BUILD_ARGS[*]} "
         "--config Release "
         "--install "
         "--jobs 8 "

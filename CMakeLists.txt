@@ -43,6 +43,14 @@ if(is_xcode)
 endif()
 
 option( CINDER_BUILD_SAMPLES "Build all samples." OFF )
+option( CINDER_VERBOSE "Build all samples." ON )
+option( BUILD_SHARED_LIBS "Build all samples." OFF )
+
+#set( CINDER_COMPILER_FLAGS "-std=c++14" )
+#CLANG_CXX_LANGUAGE_STANDARD
+set( CLANG_CXX_LANGUAGE_STANDARD "-std=c++11" )
+set( CINDER_COMPILER_FLAGS "-std=c++11" )
+
 set( CINDER_BUILD_SAMPLE "" CACHE STRING "Build a specific sample by specifying its path relative to the samples directory (ex. '_opengl/Cube')." )
 
 set( CINDER_PATH      "${CMAKE_CURRENT_SOURCE_DIR}" )
