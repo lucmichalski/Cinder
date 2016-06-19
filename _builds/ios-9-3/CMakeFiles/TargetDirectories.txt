@@ -1,3 +1,0 @@
-/Volumes/HardDrive/go/src/github.com/lucmichalski/wormz/shared/git/projects/cinder/Cinder/_builds/ios-9-3/CMakeFiles/cinder.dir
-/Volumes/HardDrive/go/src/github.com/lucmichalski/wormz/shared/git/projects/cinder/Cinder/_builds/ios-9-3/CMakeFiles/ALL_BUILD.dir
-/Volumes/HardDrive/go/src/github.com/lucmichalski/wormz/shared/git/projects/cinder/Cinder/_builds/ios-9-3/CMakeFiles/ZERO_CHECK.dir
