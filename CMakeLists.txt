@@ -1,7 +1,46 @@
+#
+# Modified by Luc Michalski - 2016
+#
+
 cmake_minimum_required( VERSION 3.0 FATAL_ERROR )
+
+string(COMPARE NOTEQUAL "$ENV{TRAVIS_TAG}" "" travis_deploy)
+string(COMPARE EQUAL "$ENV{APPVEYOR_REPO_TAG}" "true" appveyor_deploy)
+
+if(travis_deploy)
+  set(version "$ENV{TRAVIS_TAG}")
+elseif(appveyor_deploy)
+  set(version "$ENV{APPVEYOR_REPO_TAG_NAME}")
+else()
+  set(version "v0.1.0")
+endif()
+
+string(REGEX REPLACE "^v" "" version "${version}")
+
+### Hunter snapshot that will be used ###
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.14.26.tar.gz"
+    SHA1 "45ac03944db2bc7fc55dfceca42d89ec7fa1dca2"
+)
+
 set( CMAKE_VERBOSE_MAKEFILE ON )
 
-project( cinder )
+project( cinder VERSION ${version})
+
+set(is_android ${ANDROID}) # syntax compatibility
+string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
+string(COMPARE EQUAL "${CMAKE_SYSTEM_NAME}" "Linux" is_linux)
+string(COMPARE EQUAL "${CMAKE_GENERATOR}" "Xcode" is_xcode)
+
+message("Android: ${is_android}")
+message("iOS    : ${is_ios}")
+message("Linux  : ${is_linux}")
+message("Xcode  : ${is_xcode}")
+
+if(is_xcode)
+  set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configuration types")
+endif()
 
 option( CINDER_BUILD_SAMPLES "Build all samples." OFF )
 set( CINDER_BUILD_SAMPLE "" CACHE STRING "Build a specific sample by specifying its path relative to the samples directory (ex. '_opengl/Cube')." )
